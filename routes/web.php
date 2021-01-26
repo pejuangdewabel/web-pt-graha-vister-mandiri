@@ -18,3 +18,20 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/','HomeController@index')->name('home');
+Route::get('/about','HomeController@about')->name('about');
+Route::get('/dijual','HomeController@dijual')->name('dijual');
+Route::get('/dijual/{id}','HomeController@dijualDetail')->name('detail-dijual');
+Route::get('/disewakan','HomeController@disewakan')->name('disewakan');
+
+Route::get('/login','Auth\LoginController@index')->name('login');
+Route::post('/postlogin','Auth\LoginController@postLogin')->name('post-login');
+Route::post('/logout','Auth\LoginController@logout')->name('logout');
+
+
+Route::prefix('dashboard-admin')
+    ->middleware(['auth:admin'])
+    ->namespace('Admin')
+    ->group(function () {
+        Route::get('/', 'DashboardController@index')->name('dashboard-admin');       
+        Route::resource('/data/properti-dijual', 'PropertyController');
+});
