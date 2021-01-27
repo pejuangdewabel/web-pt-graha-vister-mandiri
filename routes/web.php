@@ -18,10 +18,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/','HomeController@index')->name('home');
-Route::get('/about','HomeController@about')->name('about');
+Route::get('/tentang-pt-graha-vister-mandiri','HomeController@about')->name('about');
 Route::get('/dijual','HomeController@dijual')->name('dijual');
 Route::get('/dijual/{id}','HomeController@dijualDetail')->name('detail-dijual');
 Route::get('/disewakan','HomeController@disewakan')->name('disewakan');
+Route::get('/disewakan/{id}', 'HomeController@disewakanDetail')->name('detail-disewakan');
+Route::get('/cari-property/{id}','HomeController@pencarian')->name('cari');
 
 Route::get('/login','Auth\LoginController@index')->name('login');
 Route::post('/postlogin','Auth\LoginController@postLogin')->name('post-login');

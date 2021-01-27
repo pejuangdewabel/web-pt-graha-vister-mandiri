@@ -24,7 +24,8 @@ class Property extends Model
         'syarat',
         'dekat',
         'status1',
-        'status2'
+        'status2',
+        'slug'
     ];
 
     protected $hidden = [

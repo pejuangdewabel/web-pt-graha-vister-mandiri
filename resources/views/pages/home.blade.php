@@ -4,8 +4,11 @@
   <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>PT GRAHA VISTER MANDIRI</h1>
-      <h2><strong>Anda butuh property ?, Kami siap melayani ?</strong></h2>      
-      <a href="courses.html" class="btn-get-started btn btn-success text-white"><strong>Hubungi Kami</strong></a>
+      <h2><strong>Anda butuh property untuk wilayah Lampung?, Kami siap melayani ?</strong></h2>      
+      <a 
+        href="https://api.whatsapp.com/send?phone=6285783440970&text=Halo,%20saya%20berminat%20dengan%20property%20yang%20ditawarkan%20oleh%20PT%20Graha%20Vister%20Mandiri%20?" 
+        target="_blank"
+        class="btn-get-started btn btn-success text-white"><strong>Hubungi Kami</strong></a>
     </div>
   </section><!-- End Hero -->
 
@@ -16,12 +19,12 @@
         <div class="row counters">
 
           <div class="col-lg-6 col-6 text-center">
-            <span data-toggle="counter-up">10</span>
+            <span data-toggle="counter-up">{{ $countJual }}</span>
             <p>Properti Dijual</p>
           </div>
 
           <div class="col-lg-6 col-6 text-center">
-            <span data-toggle="counter-up">10</span>
+            <span data-toggle="counter-up">{{ $countsewa }}</span>
             <p>Properti Disewakan</p>
           </div>
         </div>
@@ -39,19 +42,19 @@
           <div class="col-lg-4 col-md-4">
             <div class="icon-box">
               <i class="ri-bar-chart-box-line" style="color: #ffbb2c;"></i>
-              <h3><a href="">Bandar Lampung</a></h3>
+              <h3><a href="{{ route('cari',1) }}">Bandar Lampung</a></h3>
             </div>
           </div>
           <div class="col-lg-4 col-md-4 mt-4 mt-md-0">
             <div class="icon-box">
               <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-              <h3><a href="">Lampung Selatan</a></h3>
+              <h3><a href="{{ route('cari',2) }}">Lampung Selatan</a></h3>
             </div>
           </div>
           <div class="col-lg-4 col-md-4 mt-4 mt-md-0">
             <div class="icon-box">
               <i class="ri-bar-chart-box-line" style="color: #e80368;"></i>
-              <h3><a href="">Pesawaran</a></h3>
+              <h3><a href="{{ route('cari',3) }}">Pesawaran</a></h3>
             </div>
           </div>
         </div>
@@ -69,34 +72,42 @@
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="course-item">
-              <img src="{{ url('image/p1.jpg') }}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">                  
-                  <div class="btn btn-primary"><strong>DP Rp. 10.000.000</strong></div>
-                </div>
-                
-                <h3>Kavling Mangku Disa</h3>
-                <p class="justify-center">
-                  Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.
-                  Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.
-                </p>
-                <a href="course-details.html" class="btn btn-success mb-3">Detail</a>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                    <span>Admin</span>
+          @forelse ($jual as $j)
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+              <div class="course-item">
+                <img src="{{ Storage::url($j->foto) }}" class="img-fluid" alt="...">
+                <div class="course-content">
+                  <div class="d-flex justify-content-between align-items-center mb-3">                  
+                    <div class="btn btn-primary"><strong>DP Rp.{{ number_format($j->harga_dp) }}</strong></div>
                   </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bx bx-user"></i>&nbsp;date : 01-01-2021
-                    &nbsp;&nbsp;
-                  </div>
+                  
+                  <h3>{{ $j->nama_properti }}</h3>
+                  <p class="justify-center">
+                   {!! $j->kata_thumb !!}
+                  </p>
+                  <a href="{{ route('detail-dijual', $j->slug) }}" class="btn btn-success mb-3">Detail</a>
+                  {{-- <div class="trainer d-flex justify-content-between align-items-center">
+                    <div class="trainer-profile d-flex align-items-center">
+                      <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+                      <span>Admin</span>
+                    </div>
+                    <div class="trainer-rank d-flex align-items-center">
+                      <i class="bx bx-user"></i>&nbsp;date : 01-01-2021
+                      &nbsp;&nbsp;
+                    </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          @empty
+              <div class="col-md-12 mb-2">
+                <h6 class="text-center"><strong>Maaf, Property Jenis Ini Belum Tersedia Silahkan Mencari Property Yang Lain...</strong></h6>
+              </div>
+              <div class="col-lg-12 text-center">              
+                <img src="{{ url('image/not.svg') }}" alt="" class="img-fluid" style="height: 300px">
+              </div>
+          @endforelse          
+          {{-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
               <img src="{{ url('image/p2.jpg') }}" class="img-fluid" alt="...">
               <div class="course-content">
@@ -149,7 +160,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
 
       </div>
@@ -165,34 +176,41 @@
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="course-item">
-              <img src="{{ url('image/p1.jpg') }}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">                  
-                  <div class="btn btn-primary"><strong>DP Rp. 10.000.000</strong></div>
-                </div>
-                
-                <h3>Kavling Mangku Disa</h3>
-                <p class="justify-center">
-                  Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.
-                  Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.
-                </p>
-                <a href="course-details.html" class="btn btn-success mb-3">Detail</a>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                    <span>Admin</span>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bx bx-user"></i>&nbsp;date : 01-01-2021
-                    &nbsp;&nbsp;
-                  </div>
+          @forelse ($sewa as $s)
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+              <div class="course-item">
+                <img src="{{ Storage::url($s->foto) }}" class="img-fluid" alt="...">
+                <div class="course-content">
+                  <div class="d-flex justify-content-between align-items-center mb-3">                  
+                    <div class="btn btn-primary"><strong>DP Rp. {{ number_format($s->harga_dp) }}</strong></div>
+                  </div>                  
+                  <h3>{{ $s->nama_properti }}</h3>
+                  <p class="justify-center">
+                    {!! $s->kata_thumb !!}
+                  </p>
+                  <a href="{{ route('detail-disewakan', $s->slug) }}" class="btn btn-success mb-3">Detail</a>
+                  {{-- <div class="trainer d-flex justify-content-between align-items-center">
+                    <div class="trainer-profile d-flex align-items-center">
+                      <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+                      <span>Admin</span>
+                    </div>
+                    <div class="trainer-rank d-flex align-items-center">
+                      <i class="bx bx-user"></i>&nbsp;date : 01-01-2021
+                      &nbsp;&nbsp;
+                    </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          @empty
+            <div class="col-md-12 mb-2">
+              <h6 class="text-center"><strong>Maaf, Property Jenis Ini Belum Tersedia Silahkan Mencari Property Yang Lain...</strong></h6>
+            </div>
+            <div class="col-lg-12 text-center">              
+              <img src="{{ url('image/not.svg') }}" alt="" class="img-fluid" style="height: 300px">
+            </div>            
+          @endforelse          
+          {{-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
               <img src="{{ url('image/p2.jpg') }}" class="img-fluid" alt="...">
               <div class="course-content">
@@ -245,7 +263,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
 
       </div>
@@ -263,15 +281,18 @@
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="{{ url('image/agen.jpg') }}" class="img-fluid" alt="">
+              <img src="{{ url('image/agen.jpg') }}" class="img-fluid" alt="" style="height: 250px">
               <div class="member-content">
                 <h4>Nur Sholeh</h4>
                 <span>Marketing Agency</span>
                 <p>
-                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                  Marketing kami akan melayani anda dengan ramah dan senyuman.
                 </p>
                 <div class="social">                  
-                  <a href="" class="btn btn-info text-white"><i class="icofont-brand-whatsapp"></i> Hubungi Agen</a>
+                  <a  
+                      href="https://api.whatsapp.com/send?phone=6285783440970&text=Halo,%20saya%20berminat%20dengan%20property%20yang%20ditawarkan%20oleh%20PT%20Graha%20Vister%20Mandiri%20?"
+                      target="_blank"
+                      class="btn btn-info text-white"><i class="icofont-brand-whatsapp"></i> Hubungi Agen</a>
                 </div>
               </div>
             </div>

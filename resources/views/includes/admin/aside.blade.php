@@ -31,7 +31,7 @@
                 <span class="ml-3 item-text">Tampilan Utama</span>
               </a>
             </li>
-            <li class="nav-item dropdown {{ (request()->is('data*')) ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ (request()->is('dashboard-admin/data*')) ? 'active' : '' }}">
               <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                 <i class="fe fe-database fe-16"></i>
                 <span class="ml-3 item-text">Data Master</span>

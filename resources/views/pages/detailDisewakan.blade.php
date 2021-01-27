@@ -25,7 +25,7 @@
           href="https://api.whatsapp.com/send?phone=6285783440970&text=Halo,%20saya%20berminat%20dengan%20{{ $detail->nama_properti }}%20?"  
           target="_blank"
           class="btn btn-primary"
-        >        
+        >
             <strong>PESAN SEKARANG JUGA</strong>
         </a>
     </div>

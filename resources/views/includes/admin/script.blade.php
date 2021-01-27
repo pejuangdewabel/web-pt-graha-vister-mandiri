@@ -19,4 +19,19 @@
         ]
       });
     </script>
-    <script src="{{ url('backend/js/apps.js') }}"></script>
+    <script src="{{ url('backend/js/apps.js') }}"></script>    
+    <script type="text/javascript">
+        function Angkasaja(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+            return true;
+        }
+    </script>    
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('kata_thumb');
+        CKEDITOR.replace('deskripsi');
+        CKEDITOR.replace('syarat');
+        CKEDITOR.replace('dekat');
+    </script>

@@ -10,4 +10,4 @@
     <link rel="stylesheet" href="{{ url('backend/css/app-light.css') }}" id="lightTheme" disabled>
     <link rel="stylesheet" href="{{ url('backend/css/app-dark.css') }}" id="darkTheme">
 
-    <link rel="stylesheet" href="{{ url('backend/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ url('backend/css/dataTables.bootstrap4.css') }}">    
