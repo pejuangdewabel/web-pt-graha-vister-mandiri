@@ -31,9 +31,13 @@ Route::post('/logout','Auth\LoginController@logout')->name('logout');
 
 
 Route::prefix('dashboard-admin')
-    ->middleware(['auth:admin'])
+    ->middleware([
+        'auth:admin',
+        'ceklevel:admin'
+    ])
     ->namespace('Admin')
     ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard-admin');       
         Route::resource('/data/properti-dijual', 'PropertyController');
+        Route::resource('/data/pengguna', 'PenggunaController');
 });

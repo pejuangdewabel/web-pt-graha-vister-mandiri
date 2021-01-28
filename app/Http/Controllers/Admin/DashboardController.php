@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('pages.admin.dashboard');
+        $jual = Property::where('status2', '1')->count();
+        $sewa = Property::where('status2', '2')->count();
+
+        return view('pages.admin.dashboard',[
+            'jual' => $jual,
+            'sewa' => $sewa
+        ]);
     }
 }

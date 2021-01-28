@@ -16,7 +16,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $data = Property::where('status2','1')->get();        
+        $data = Property::all();        
         return view('pages.admin.property.index',[
             'data' => $data
         ]);
@@ -83,7 +83,10 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Property::findOrFail($id);
+        return view('pages.admin.property.detail',[
+            'data' => $data
+        ]);
     }
 
     /**

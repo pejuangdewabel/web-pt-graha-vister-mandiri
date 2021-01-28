@@ -37,8 +37,8 @@
                 <span class="ml-3 item-text">Data Master</span>
               </a>
               <ul class="collapse list-unstyled pl-4 w-100" id="contact">                
-                <a class="nav-link pl-3" href="{{ route('properti-dijual.index') }}"><span class="ml-1">Data Properti Jual</span></a>                
-                <a class="nav-link pl-3" href="./contacts-grid.html"><span class="ml-1">Data Properti Sewa</span></a>       
+                <a class="nav-link pl-3" href="{{ route('properti-dijual.index') }}"><span class="ml-1">Data Properti</span></a>
+                <a class="nav-link pl-3" href="{{ route('pengguna.index') }}"><span class="ml-1">Data Pengguna Sistem</span></a>                                       
               </ul>
             </li>
           </ul>
@@ -46,32 +46,12 @@
             <span>Extra</span>
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-              <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-file fe-16"></i>
-                <span class="ml-3 item-text">Pages</span>
+            <li class="nav-item w-100">
+              <a class="nav-link" href="">
+                <i class="fe fe-settings fe-16"></i>
+                <span class="ml-3 item-text">Setting Profile</span>
               </a>
-              <ul class="collapse list-unstyled pl-4 w-100 w-100" id="pages">
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="./page-orders.html">
-                    <span class="ml-1 item-text">Orders</span>
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
-          <div class="btn-box w-100 mt-4 mb-1">
-            <a 
-                class="btn mb-2 btn-danger btn-lg btn-block"
-                href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"
-            >
-              <i class="fe fe-log-out fe-12 mr-2"></i><span class="small">KELUAR</span>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-          </div>
         </nav>
     </aside>

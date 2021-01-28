@@ -27,12 +27,18 @@ class HomeController extends Controller
     }
 
     public function dijual(){
-        return view('pages.dijual');
+        $data = Property::where('status2', '1')->paginate(6);
+        return view('pages.dijual',[
+            'data'  => $data
+        ]);
     }
 
     public function disewakan()
     {
-        return view('pages.disewakan');
+        $data = Property::where('status2', '2')->paginate(6);
+        return view('pages.disewakan',[
+            'data'  => $data
+        ]);
     }
 
     public function dijualDetail($id){

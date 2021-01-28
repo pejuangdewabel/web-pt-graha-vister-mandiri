@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-12">
-        <h2 class="mb-2 page-title">Data Property Dijual</h2>
+        <h2 class="mb-2 page-title">Data Property</h2>
         <hr>
         <a href="{{ route('properti-dijual.create') }}" class="btn btn-primary"><i class="fe fe-plus-circle fe-16"></i> Tambah Data</a>
         <div class="row my-4">
@@ -36,6 +36,7 @@
                                         <th><strong>Foto</strong></th>
                                         <th><strong>Lokasi</strong></th>
                                         <th><strong>Kota/Kabupaten</strong></th>
+                                        <th><strong>Status</strong></th>
                                         <th><strong>Aksi</strong></th>
                                     </tr>
                                 </thead>
@@ -71,6 +72,13 @@
                                                     Lampung Selatan
                                                 @else
                                                     Pesawaran
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($d->status2 == '1')
+                                                    Dijual
+                                                @elseif($d->status2 == '2')
+                                                    Disewakan
                                                 @endif
                                             </td>
                                             <td>
